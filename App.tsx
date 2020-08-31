@@ -1,17 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View, FlatList, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
 
 import Header from './src/components/header';
-import Card from './src/components/todoList/card';
 import TodoList from './src/components/todoList';
+import todoReducer, { initialState } from './src/reducer';
+
+const store = createStore(todoReducer, initialState);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Header title="TO DO REDUCER"/>
-      <TodoList />
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <Header title="TO DO REDUCER" />
+        <TodoList />
+      </View>
+    </Provider>
   );
 }
 
