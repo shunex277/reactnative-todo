@@ -10,10 +10,10 @@ interface addButtonProps {
   isVisibleOvarlay: boolean;
   onPress: () => void;
 
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
 
   // タスクを追加する関数
-  addTask: () => void;
+  addTask?: () => void;
 }
 
 const AddButton: FC<addButtonProps> = ({
@@ -31,7 +31,7 @@ const AddButton: FC<addButtonProps> = ({
       onPress={onPress}
     />
     <Overlay
-      isVisible={true}
+      isVisible={isVisibleOvarlay}
       overlayStyle={styles.overlayItem}
       onBackdropPress={onPress}
     >
