@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+import { Button } from "react-native-elements";
 
-import Card from "../card";
+import Card from "./card";
+import AddButton from './addBotton';
 
 const TodoList: FC = () => {
   const todos = [
@@ -11,34 +13,6 @@ const TodoList: FC = () => {
     },
     {
       title: "GO言語の勉強",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
-      isDone: false,
-    },
-    {
-      title: "積ん読本を読む",
       isDone: false,
     },
     {
@@ -55,6 +29,7 @@ const TodoList: FC = () => {
             <Card title={todo.title} isDone={todo.isDone} />
           </View>
         ))}
+        <AddButton />
       </View>
     </ScrollView>
   );

@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { CheckBox } from "react-native-elements";
 
-import { screenWidth } from '../styles';
+import { listWidth } from '../styles';
 
 export interface CardProps {
   title: string;
@@ -25,10 +25,12 @@ const Card: FC<CardProps> = ({ title = "タスクの名前", isDone = false }) =
   );
 };
 
+export const cardHeight = 64
+
 const styles = StyleSheet.create({
   cardContainer: {
-    width: screenWidth - 32,
-    height: 64,
+    width: listWidth,
+    height: cardHeight,
     backgroundColor: "white",
     justifyContent: "center",
     borderRadius: 16,

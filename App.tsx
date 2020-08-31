@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View, FlatList, Text, Dimensions } from 'react-native';
 
 import Header from './src/components/header';
-import Card from './src/components/card';
+import Card from './src/components/todoList/card';
 import TodoList from './src/components/todoList';
 
 export default function App() {
