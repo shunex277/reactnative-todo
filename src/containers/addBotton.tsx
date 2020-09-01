@@ -6,12 +6,16 @@ import AddButton from '../components/todoList/addBotton';
 import { add, Todo } from '../actions/todo';
 
 interface AddButtonContainerProps {
-  addTask?: (title: string) => void;
-}
+  addTask: (todo: Todo) => void;
+};
 
 interface DispatcheProps {
   addTask: (todo: Todo) => void;
-}
+};
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatcheProps => ({
+  addTask: todo => dispatch(add(todo)),
+})
 
 const AddButtonContainer: FC<AddButtonContainerProps> = ({
   addTask = () => {},
@@ -25,7 +29,7 @@ const AddButtonContainer: FC<AddButtonContainerProps> = ({
   const [addingTitle, setAddingTitle] = useState('');
 
   const addTaskMethod = () => {
-    addTask(addingTitle);
+    addTask({title: addingTitle, isDone: false});
     toggleVisible();
   }
 
@@ -41,4 +45,4 @@ const AddButtonContainer: FC<AddButtonContainerProps> = ({
   )
 }
 
-export default AddButtonContainer;
+export default connect(null, mapDispatchToProps)(AddButtonContainer);

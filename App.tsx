@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 
 
 import Header from './src/components/header';
-import TodoList from './src/components/todoList';
+import TodoList from './src/containers/todoList';
 import todoReducer, { initialState } from './src/reducer';
 
 const store = createStore(todoReducer, initialState);

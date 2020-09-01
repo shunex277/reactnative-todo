@@ -4,48 +4,35 @@ import { Button } from "react-native-elements";
 
 import Card from "./card";
 import AddButton from '../../containers/addBotton';
+import { Todo } from '../../actions/todo';
 
-interface todo {
-  title: string;
-  isDone: boolean;
-}
+// const initialTodoState: Todo[] = [
+//   {
+//     title: "英単語を覚える",
+//     isDone: false,
+//   }
+// ];
 
-const initialTodoState: todo[] = [
-  {
-    title: "英単語を覚える",
-    isDone: false,
-  }
-]
+interface TodoListProps {
+  todos: Todo[];
+};
 
-const TodoList: FC = () => {
-  // const todos = [
-  //   {
-  //     title: "英単語を覚える",
+const TodoList: FC<TodoListProps> = ({
+  todos = [],
+}) => {
+  // const [todos, setTodos] = useState(initialTodoState)
+
+  // const addTask = (title: string) => {
+  //   const aditionalTodo: Todo = {
+  //     title: title,
   //     isDone: false,
-  //   },
-  //   {
-  //     title: "GO言語の勉強",
-  //     isDone: false,
-  //   },
-  //   {
-  //     title: "積ん読本を読む",
-  //     isDone: false,
-  //   },
-  // ];
-
-  const [todos, setTodos] = useState(initialTodoState)
-
-  const addTask = (title: string) => {
-    const aditionalTodo: todo = {
-      title: title,
-      isDone: false,
-    };
-    setTodos(prevState => {
-      const newState = prevState.concat(aditionalTodo)
-      return newState;
-    });
-    // console.log(todos);
-  }
+  //   };
+  //   setTodos(prevState => {
+  //     const newState = prevState.concat(aditionalTodo)
+  //     return newState;
+  //   });
+  //   // console.log(todos);
+  // }
 
   return (
     <ScrollView>
@@ -55,7 +42,7 @@ const TodoList: FC = () => {
             <Card title={todo.title} isDone={todo.isDone} />
           </View>
         ))}
-        <AddButton addTask={addTask}/>
+        <AddButton />
       </View>
     </ScrollView>
   );
