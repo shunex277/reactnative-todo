@@ -1,52 +1,69 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { CheckBox } from "react-native-elements";
-import { SwipeRow } from 'react-native-swipe-list-view';
+import { CheckBox, Button } from "react-native-elements";
+import { SwipeRow } from "react-native-swipe-list-view";
 
-import { listWidth } from '../styles';
+import { listWidth, screenWidth } from "../styles";
 
 export interface CardProps {
   title: string;
   isDone: boolean;
+  deleteTask?: () => void;
 }
 
-const Card: FC<CardProps> = ({ title = "", isDone = false }) => {
+const Card: FC<CardProps> = ({
+  title,
+  isDone, 
+  deleteTask = () => {},
+}) => {
   return (
-    <SwipeRow rightOpenValue={-75} disableRightSwipe={true} style={styles.cardContainer}>
-      <View style={styles.standaloneRowBack}>
-        <Text style={styles.backTextWhite}>Right</Text>
+    <SwipeRow
+      rightOpenValue={-75}
+      disableRightSwipe={true}
+    >
+      <View style={styles.backContainer}>
+        <Button
+          title="削除"
+          type="clear"
+          titleStyle={styles.backTextWhite}
+          containerStyle={styles.backTextContainer}
+          onPress={deleteTask}
+        />
       </View>
-      <CheckBox
-        checked={isDone}
-        size={18}
-        title={
-          <View>
-            <Text style={styles.cardTitle}>{title}</Text>
-          </View>
-        }
-        textStyle={styles.cardTitle}
-        containerStyle={styles.cardContainer}
-      />
+      <View style={styles.cardContainer}>
+        <CheckBox
+          checked={isDone}
+          size={18}
+          title={
+            <View>
+              <Text style={styles.cardTitle}>{title}</Text>
+            </View>
+          }
+          textStyle={styles.cardTitle}
+          containerStyle={styles.checkBoxContainer}
+        />
+      </View>
     </SwipeRow>
   );
 };
 
-export const cardHeight = 64
+export const cardHeight = 64;
 
 const styles = StyleSheet.create({
   container: {
     // width: listWidth,
     height: cardHeight,
     justifyContent: "center",
-    alignContent: 'center',
+    alignContent: "center",
   },
   cardContainer: {
     width: listWidth,
     height: cardHeight,
+    marginHorizontal: 16,
     backgroundColor: "white",
     justifyContent: "center",
     borderRadius: 16,
-    shadowColor: '#000000',
+    shadowColor: "#000000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -54,25 +71,34 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOpacity: 0.25,
   },
+  checkBoxContainer: {
+    backgroundColor: "white",
+    borderColor: "white",
+  },
+  backContainer: {
+    width: listWidth - 8,
+    height: cardHeight,
+    backgroundColor: "red",
+    justifyContent: "flex-end",
+    alignContent: "center",
+    marginLeft: 16,
+    borderRadius: 16,
+    flexDirection: "row",
+  },
   cardTitle: {
-    fontSize: 15,
+    fontSize: 20,
     marginLeft: 16,
   },
-  standaloneRowBack: {
-    width: listWidth,
-    height: cardHeight,
-    borderRadius: 16,
-    alignItems: 'center',
-    // backgroundColor: 'gray',
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 15,
+  backTextContainer: {
+    width: 75,
+    justifyContent: "center",
+    // backgroundColor: 'blue',
   },
   backTextWhite: {
-    color: '#FFF',
+    fontSize: 20,
+    color: "#FFF",
+    fontWeight: "bold",
   },
-
 });
 
 export default Card;

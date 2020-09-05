@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
+import { Dispatch } from 'redux';
 
 import TodoList from '../components/todoList';
-import { Todo } from '../actions/todo';
+import { Todo, deleteTask } from '../actions/todo';
 
 interface StateProps {
   todos: Todo[],
@@ -13,4 +13,12 @@ const mapStateToProps = (state: Todo[]): StateProps => ({
   todos: state,
 });
 
-export default connect(mapStateToProps)(TodoList);
+interface DispatchProps {
+  deleteTask: (id: number) => void;
+};
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  deleteTask: id => dispatch(deleteTask(id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

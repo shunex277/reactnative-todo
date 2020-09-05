@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 
 import AddButton from '../components/todoList/addBotton';
 import { add, Todo } from '../actions/todo';

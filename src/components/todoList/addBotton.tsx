@@ -18,9 +18,9 @@ interface addButtonProps {
 
 const AddButton: FC<addButtonProps> = ({
   isVisibleOvarlay=false,
-  onPress=()=> {},
+  onPress = ()=> {},
   onChangeText = () => {},
-  addTask= () => {},
+  addTask = () => {},
 }) => (
   <View style={{ marginBottom: 16 }}>
     <Button

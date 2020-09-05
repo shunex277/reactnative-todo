@@ -1,7 +1,9 @@
 import {Reducer} from 'redux';
 import { TodoActionType, TodoAction, Todo } from './actions/todo';
 
-export const initialState: Todo[] = [];
+const debug = true
+
+export const initialState: Todo[] = debug ? [{title: "これはサンプルです", isDone: false}] : [];
 
 const todoReducer: Reducer<Todo[], TodoAction> = (
   state: Todo[] = initialState,
@@ -10,6 +12,9 @@ const todoReducer: Reducer<Todo[], TodoAction> = (
   switch(action.type) {
     case TodoActionType.ADD:
       return state.concat((action.todo || {title: 'undifined', isDone: false}));
+    case TodoActionType.DELETE:
+      const newState = state.filter((value, index) => index !== action.id);
+      return newState;
     default: {
       const _: never = action.type;
 
