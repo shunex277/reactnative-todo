@@ -13,8 +13,16 @@ const todoReducer: Reducer<Todo[], TodoAction> = (
     case TodoActionType.ADD:
       return state.concat((action.todo || {title: 'undifined', isDone: false}));
     case TodoActionType.DELETE:
-      const newState = state.filter((value, index) => index !== action.id);
-      return newState;
+      const newStateDeleted = state.filter((value, index) => index !== action.id);
+      return newStateDeleted;
+    case TodoActionType.UPDATE:
+      if ((!!action.id || action.id === 0) && !!action.todo) {
+        let newStateUpdated = [...state];
+        newStateUpdated.splice(action.id, 1, action.todo);
+        return newStateUpdated;
+      } else {
+        return state;
+      }
     default: {
       const _: never = action.type;
 

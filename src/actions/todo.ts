@@ -1,6 +1,7 @@
 export enum TodoActionType {
   ADD = 'ADD',
-  DELETE = 'DELETE'
+  DELETE = 'DELETE',
+  UPDATE = 'UPDATE'
 };
 
 export interface Todo {
@@ -22,4 +23,10 @@ export const add = (todo: Todo): TodoAction => ({
 export const deleteTask = (id: number): TodoAction => ({
   id,
   type: TodoActionType.DELETE
+})
+
+export const updateTask = (id: number, todo: Todo): TodoAction => ({
+  id,
+  todo,
+  type: TodoActionType.UPDATE
 })

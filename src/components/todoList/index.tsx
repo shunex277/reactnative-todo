@@ -2,25 +2,29 @@ import React, { FC, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Button } from "react-native-elements";
 
-import Card from '../../containers/card';
-import AddButton from '../../containers/addBotton';
-import { Todo } from '../../actions/todo';
+import Card from "../../containers/card";
+import AddButton from "../../containers/addBotton";
+import { Todo } from "../../actions/todo";
 
 interface TodoListProps {
   todos: Todo[];
   deleteTask?: (id: number) => void;
-};
+  updateTask?: (id: number, todo: Todo) => void;
+}
 
-const TodoList: FC<TodoListProps> = ({
-  todos = [],
-  deleteTask = () => {},
-}) => {
+const TodoList: FC<TodoListProps> = ({ todos = [], deleteTask = () => {}, updateTask = () => {} }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
         {todos.map((todo, index) => (
           <View key={index} style={{ marginBottom: 16 }}>
-            <Card title={todo.title} isDone={todo.isDone} id={index} deleteTask={deleteTask} />
+            <Card
+              title={todo.title}
+              isDone={todo.isDone}
+              id={index}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+            />
           </View>
         ))}
         <AddButton />

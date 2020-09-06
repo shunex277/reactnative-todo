@@ -9,12 +9,14 @@ export interface CardProps {
   title: string;
   isDone: boolean;
   deleteTask?: () => void;
+  toggleIsDone?: () => void;
 }
 
 const Card: FC<CardProps> = ({
   title,
   isDone, 
   deleteTask = () => {},
+  toggleIsDone = () => {},
 }) => {
   return (
     <SwipeRow
@@ -41,6 +43,7 @@ const Card: FC<CardProps> = ({
           }
           textStyle={styles.cardTitle}
           containerStyle={styles.checkBoxContainer}
+          onPress={toggleIsDone}
         />
       </View>
     </SwipeRow>
