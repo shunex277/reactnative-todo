@@ -9,11 +9,11 @@ interface AddButtonContainerProps {
   addTask: (todo: Todo) => void;
 };
 
-interface DispatcheProps {
+interface DispatchProps {
   addTask: (todo: Todo) => void;
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatcheProps => ({
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   addTask: todo => dispatch(add(todo)),
 })
 

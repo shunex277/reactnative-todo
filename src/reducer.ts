@@ -23,6 +23,10 @@ const todoReducer: Reducer<Todo[], TodoAction> = (
       } else {
         return state;
       }
+    case TodoActionType.REDUCE:
+      const reducedTaskIndex = Math.floor(Math.random() * state.length)
+      let newStateReduced = state.filter(((value, index) => index !== reducedTaskIndex));
+      return newStateReduced;
     default: {
       const _: never = action.type;
 
