@@ -1,4 +1,11 @@
-# to-do-reducer
+# React Nativeを使ったTODOアプリ
+react nativeの練習として作成．
+
+## 使用した技術
+- React Native
+- Redux
+- expo
+- TypeScript
 
 ## install packages
 ```sh
